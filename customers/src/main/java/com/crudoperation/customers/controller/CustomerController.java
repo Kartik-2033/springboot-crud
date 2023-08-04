@@ -21,9 +21,10 @@ import com.crudoperation.customers.service.CustomerService;
  * <h3>All methods</h3>
  * <ol>
  * <li>listAll : returns all the data from databse</li>
- * <li>saveCustomer : to save the data</li>
+ * <li>saveOrUpdateCustomer : to save or update the data</li>
  * <li>getCustomerById : return selected customer data</li>
- * <li>updateCustomer : update customer data</li>
+ * <li>existMobileNumber : to check mobile number exist or not</li>
+ * <li>existEmail : to check email address exist or not</li>
  * <li>deleteCustomer : delete selected customer data</li>
  * </ol>
  * 

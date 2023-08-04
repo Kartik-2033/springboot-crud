@@ -15,6 +15,8 @@ import com.crudoperation.customers.repository.CustomerRepository;
  * <ol>
  * <li>listAll : fetch all data from the repository</li>
  * <li>saveOrUpdateCustomer : to save or update the data</li>
+ * <li>existMobileNumber : to check mobile number exist or not</li>
+ * <li>existEmail : to check email address exist or not</li>
  * <li>findById : to find customer data according to 'id'</li>
  * <li>delete : to delete customer data according to 'id'</li>
  * </ol>
