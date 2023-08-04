@@ -1,0 +1,89 @@
+1) Analysis for Practical 28 
+
+- Create a CRUD operation application.
+CRUD: Create, Read, Update, and Delete Data
+
+- Technologies
+Front-end: HTML, CSS, JS, jQuery validation
+Back-end: Spring-boot, Hibernate/JPA framework
+Database: MySQL
+IDE: Eclipse (Coding and testing project), SQLyog (Database GUI)
+
+_________________________________________________________________
+
+2) Technical analysis
+
+Front-end
+
+Customer registartion form
+- First icon 'user' and title 'Customer registartion form'.
+
+All form fields
+- firstName field = input type will be 'text', id and name will be 'firstName', placeholder will be 'Enter customer first name'.
+- lastName field = input type will be 'text', id and name will be 'lastName', placeholder will be 'Enter customer last name'.
+- DOB field = input type will be 'text', id and name will be 'DOB', placeholder will be 'Enter customer DOB'.
+> When we click on the DOB field, the jQuery date picker(Date box) appears.
+- mobile number field = input type will be 'tel', id and name will be 'mobileNumber', placeholder will be 'Enter customer mobile number'.
+- present address field = input type will be 'text', id and name will be 'addressOne', placeholder will be 'Enter customer present address'.
+- permanent address field = input type will be 'text', id and name will be 'addressTwo', placeholder will be 'Enter customer permanent address'.
+- age field = input type will be 'number', id and name will be 'age', placeholder will be 'Enter customer age'.
+- Select gender lable,  two radio button (Male and Female), id and name will be 'Gender'.
+- email field = input type will be 'email', id and name will be 'email', placeholder will be 'Enter customer email'.
+- Register (Button).
+
+Customer data (table)
+1.	Name (Firstname + Lastname)
+2.	Date of Birth
+3.	Mobile
+4.	Address (Address 1 + Address 2)
+5.	Gender
+6.	Action
+- In the table Action columns have two buttons Edit & Delete.
+
+- When we click on Register button js FormValidation() function called.
+- FormValidation function check below points
+> Field is empty or not.
+> Field have data are valid or not(Valid data Like e.g.> firstName field cannot accept numeric placeholders or special characters.)
+> Adding validation for email & mobile number can not store duplicate in the database.
+
+Back-end
+
+CRUD operation data flow
+
+(i) save data :
+After form submit-> saveData (ajax call) -> ajax hit the controller (saveData) -> all the data saved in JPARepository -> after saving data return success response -> ajax receive success response -> Popup show "Customer register successfully."
+
+(ii) show data :
+showData (ajax call) -> ajax hit the controller (showData) -> listAll() Fetch all the data store in database -> return response with all fetched data -> show data in table.
+
+(iii) edit data :
+> When we click on edit button 
+editdata (ajax call) -> ajax hit controller(getCustomerData(id) -> check if customer data is present or not -> findById(id) find the selected customer data from database -> return response with selected customer data -> editdata ajax receive data response -> all the data append in form field and button name change 'Register' to 'Update'.
+
+> When we click update
+After form submit -> updateData (ajax call) -> ajax hit the controller (updateData) -> all the data updated in JPARepository -> after update data success response return -> ajax receive success response -> Popup show "Customer data successfully updated."
+
+(iv) delete data :
+click on delete button -> Popup show "Are you sure want delete." -> click yes-> deleteData (ajax call) -> check data present or not, if yes then delete data or no then error message show -> after delete data return success response -> ajax(deleteData) receive success response -> Popup show "Customer delete successfully."
+
+_________________________________________________________________
+
+3) Database structure
+
+Database name = 'customers'
+Table name = 'customer_details'
+
+Table structure :
+Column One : name = id, data type = int (NOT NULL AUTO_INCREMENT PRIMARY KEY)
+Column Two : name = first_name, data type(length) = varchar(32) (NOT NULL)
+Column Three : name = last_name, data type(length) = varchar(32) (NOT NULL)
+Column Four : name = DOB, data type = date DEFAULT NULL
+Column Five : name = mobile_number, data type =  bigint (NOT NULL)
+Column Six : name = address_1, data type(length) =  varchar(255) (NOT NULL)
+Column Seven : name = address_2, data type(length) =  varchar(255) DEFAULT NULL
+Column Eight : name = age, data type =  int (NOT NULL)
+Column Nine : name = gender tinyint NOT NULL
+Column Ten : name = email, data type(length) = varchar(100) (NOT NULL)
+
+
+Task Completed = 4:42 PM;
