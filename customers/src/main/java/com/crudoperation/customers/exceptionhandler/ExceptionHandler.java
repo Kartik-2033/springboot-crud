@@ -1,4 +1,4 @@
-package com.crudoperation.customers.exceptionhandle;
+package com.crudoperation.customers.exceptionhandler;
 
 @SuppressWarnings("serial")
 public class ExceptionHandler extends Exception {
