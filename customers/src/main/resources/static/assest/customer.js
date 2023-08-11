@@ -269,7 +269,7 @@ function saveOrUpdateCustomer() {
 	$.ajax({
 		type: "POST",
 		contentType: "application/json",
-		url: "saveCustomer",
+		url: "saveOrUpdateCustomer",
 		data: JSON.stringify(formData),
 		dataType: 'json',
 		success: function(data) {

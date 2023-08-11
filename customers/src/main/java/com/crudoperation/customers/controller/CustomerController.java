@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crudoperation.customers.entity.Customer;
-import com.crudoperation.customers.exceptionhandle.ExceptionHandler;
-import com.crudoperation.customers.repository.CustomerRepository;
+import com.crudoperation.customers.exceptionhandler.ExceptionHandler;
 import com.crudoperation.customers.service.CustomerService;
 
 /**
@@ -21,10 +20,9 @@ import com.crudoperation.customers.service.CustomerService;
  * <h3>All methods</h3>
  * <ol>
  * <li>listAll : returns all the data from databse</li>
- * <li>saveOrUpdateCustomer : to save or update the data</li>
+ * <li>saveCustomer : to save the data</li>
  * <li>getCustomerById : return selected customer data</li>
- * <li>existMobileNumber : to check mobile number exist or not</li>
- * <li>existEmail : to check email address exist or not</li>
+ * <li>updateCustomer : update customer data</li>
  * <li>deleteCustomer : delete selected customer data</li>
  * </ol>
  * 
@@ -35,7 +33,6 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService service;
-	CustomerRepository repository;
 
 	@GetMapping("/getAllCustomers")
 	public List<Customer> listAll() {
@@ -43,7 +40,7 @@ public class CustomerController {
 		return customers;
 	}
 
-	@PostMapping("/saveCustomer")
+	@PostMapping("/saveOrUpdateCustomer")
 	public ResponseEntity<Object> saveOrUpdateCustomer(@RequestBody Customer customer) {
 		try {
 			Customer newCustomer = service.saveOrUpdateCustomer(customer);
