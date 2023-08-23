@@ -1,104 +1,89 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
+
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Registration Form</title>
-<!-- Custome css file-->
-<link rel="stylesheet" href="assest/customer.css">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Customer registration Form</title>
+	<!-- Custome css file-->
+	<link rel="stylesheet" href="assest/customer.css">
 
-<!-- font-awesoem cdn-->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- font-awesoem cdn-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- datatable cdn-->
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+	<!-- datatable cdn-->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 
-<!-- Date picker css -->
-<link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-	rel="stylesheet" />
+	<!-- Sweet alert css -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.min.css"
+		integrity="sha256-7jUS+MWeqkFdmW9ozkZ7mPagz+QmMbsBlt+Q3MsE+FU=" crossorigin="anonymous">
 
-<!-- Sweet alert css -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.min.css"
-	integrity="sha256-7jUS+MWeqkFdmW9ozkZ7mPagz+QmMbsBlt+Q3MsE+FU="
-	crossorigin="anonymous">
+	<!-- jQuery script -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+		integrity="sha512-poSrvjfoBHxVw5Q2awEsya5daC0p00C8SKN74aVJrs7XLeZAi+3+13ahRhHm8zdAFbI2+/SUIrKYLvGBJf9H3A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<!-- jQuery script -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"
-	integrity="sha512-poSrvjfoBHxVw5Q2awEsya5daC0p00C8SKN74aVJrs7XLeZAi+3+13ahRhHm8zdAFbI2+/SUIrKYLvGBJf9H3A=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- jQuery validation script -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!-- jQuery validation script -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- jQuery datatable script -->
+	<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 
-<!-- jQuery datatable script -->
-<script
-	src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"
-	integrity="sha256-eYINpiFTsm812/hOBxFCGaSZzPvHBZZFYSe5ZWLgYzo="
-	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"
+		integrity="sha256-eYINpiFTsm812/hOBxFCGaSZzPvHBZZFYSe5ZWLgYzo=" crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<!-- Customer form -->
 	<div class="wrapper">
-		<h2>
-			<i class="fa-solid fa-user-tie"></i> Customer registartion form
+		<h2 id="form-title">
+			<i class="fa-solid fa-user-tie"></i>
+			 Customer registartion form
 		</h2>
 		<form id="frmCustomer" name="frmCustomer">
 			<input type="hidden" id="customerid" name="customerid" value="">
 			<div class="input-box">
-				<input type="text" id="firstName" name="firstName"
-					placeholder="Enter customer first name" autocomplete="off"
-					onkeydown="return /[A-Za-z]/i.test(event.key)">
+				<input type="text" id="firstName" name="firstName" placeholder="Enter customer first name"
+					autocomplete="off" onkeydown="return /[A-Za-z]/i.test(event.key)">
 			</div>
 			<div class="input-box">
-				<input type="text" id="lastName" name="lastName"
-					placeholder="Enter customer last name" autocomplete="off"
-					onkeydown="return /[A-Za-z]/i.test(event.key)">
+				<input type="text" id="lastName" name="lastName" placeholder="Enter customer last name"
+					autocomplete="off" onkeydown="return /[A-Za-z]/i.test(event.key)">
 			</div>
 			<div class="input-box">
-				<input type="date" id="DOB" name="DOB"
-					placeholder="Enter customer DOB 'MM-DD-YYYY'" autocomplete="off" required>
+				<input type="date" id="DOB" name="DOB" autocomplete="off" required>
 			</div>
 			<div class="input-box">
-				<input type="tel" id="mobileNumber" name="mobileNumber"
-					placeholder="Enter customer mobile number" autocomplete="off"
-					onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-					maxlength="10"> <span class="mobileNumberError"
-					id="mobileNumberError"></span>
+				<input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Enter customer mobile number"
+					autocomplete="off" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+					maxlength="10"> <span class="mobileNumberError" id="mobileNumberError"></span>
 			</div>
 			<div class="input-box">
-				<input type="text" id="addressOne" name="addressOne"
-					placeholder="Enter customer present address" autocomplete="off">
+				<input type="text" id="addressOne" name="addressOne" placeholder="Enter customer present address"
+					autocomplete="off">
 			</div>
 			<div class="input-box">
-				<input type="text" id="addressTwo" name="addressTwo"
-					placeholder="Enter customer permanent address" autocomplete="off">
+				<input type="text" id="addressTwo" name="addressTwo" placeholder="Enter customer permanent address"
+					autocomplete="off">
 			</div>
 			<div class="input-box">
-				<input type="number" id="Age" name="Age"
-					placeholder="Enter customer age" autocomplete="off" max="100" disabled="disabled">
+				<input type="number" id="Age" name="Age" placeholder="Enter customer age" autocomplete="off" max="100"
+					disabled="disabled">
 			</div>
 			<div class="input-box"
 				style="font-size: 17px; font-weight: 400; font-family: inherit; border: 1.5px solid #c7bebe; border-bottom-width: 2.5px; border-radius: 6px; padding: 12px 15px;">
-				<label> Select gender :</label> <input type="radio" id="gender"
-					name="gender" value="1" style="height: 15px; width: 20px;"><span>Male</span>
+				<label> Gender :</label>
+				<input type="radio" id="gender" name="gender" value="1"
+					style="height: 15px; width: 20px;"><span>Male</span>
 				<input type="radio" id="gender" name="gender" value="2"
 					style="height: 15px; width: 20px;"><span>Female</span>
 			</div>
 			<div class="input-box">
-				<input type="email" id="email" name="email"
-					placeholder="Enter customer email" autocomplete="off"> <span
+				<input type="email" id="email" name="email" placeholder="Enter customer email" autocomplete="off"> <span
 					class="emailError" id="emailError"></span>
 			</div>
 			<div class="input-box button">
@@ -131,4 +116,5 @@
 	</div>
 	<script src="assest/customer.js"></script>
 </body>
+
 </html>

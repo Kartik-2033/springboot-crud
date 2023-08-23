@@ -1,4 +1,4 @@
-package com.crudoperation.customers.entity;
+package com.crudoperation.customer.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,8 +8,13 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * <b>Customer</b> : Entity class
+ * 
+ * @author Kartik
+ */
 @Entity
-@Table(name = "customer_details")
+@Table
 @Getter
 @Setter
 public class Customer {

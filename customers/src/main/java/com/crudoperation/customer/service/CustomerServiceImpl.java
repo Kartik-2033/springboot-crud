@@ -1,22 +1,25 @@
-package com.crudoperation.customers.service;
+package com.crudoperation.customer.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.crudoperation.customers.entity.Customer;
-import com.crudoperation.customers.exceptionhandler.ExceptionHandler;
-import com.crudoperation.customers.repository.CustomerRepository;
+
+import com.crudoperation.customer.entity.Customer;
+import com.crudoperation.customer.exceptionhandler.ExceptionHandler;
+import com.crudoperation.customer.repository.CustomerRepository;
 
 /**
- * <b>CustomerService</b>
+ * <b>CustomerServiceImpl</b>
  * <h3>All methods</h3>
  * <ol>
- * <li>listAll : fetch all data from the repository</li>
  * <li>saveOrUpdateCustomer : to save or update the data</li>
- * <li>findById : to find customer data according to 'id'</li>
- * <li>delete : to delete customer data according to 'id'</li>
+ * <li>listAll : returns all the data from databse</li>
+ * <li>findById : find customer data by id</li>
+ * <li>delete : delete customer data</li>
+ * <li>existMobileNumber : check mobile number is exit or not</li>
+ * <li>existEmail : check email is exit or not</li>
  * </ol>
  * 
  * @author Kartik
@@ -78,10 +81,11 @@ public class CustomerServiceImpl implements CustomerService {
 			} else if (checkEmail) {
 				throw new ExceptionHandler("emailException");
 			} else {
-				return repository.save(customer);
+				customer = repository.save(customer);
+				return customer;
 			}
 		}
-		return customer;
+		return null;
 	}
 
 	@Override

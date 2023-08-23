@@ -8,6 +8,22 @@ $(document).ready(function() {
 var dateControler = {
 	currentDate: null
 }
+
+$(function() {
+	var dtToday = new Date();
+
+	var month = dtToday.getMonth() + 1;
+	var day = dtToday.getDate();
+	var year = dtToday.getFullYear();
+	if (month < 10)
+		month = '0' + month.toString();
+	if (day < 10)
+		day = '0' + day.toString();
+
+	var maxDate = year + '-' + month + '-' + day;
+	$('#DOB').attr('max', maxDate);
+});
+
 $(document).on("keyup blur change input", "#DOB", function() {
 	var now = new Date();
 	var selectedDate = new Date($(this).val());
@@ -39,10 +55,12 @@ function validationErorMessages() {
 	$("#mobileNumber-error").html("");
 	$("#email-error").html("");
 }
+
 // Hide the errors message
 function hideMobileNumber() {
 	$("#mobileNumberError").html("");
 }
+
 function hideEmailId() {
 	$("#emailError").html("");
 }
@@ -119,6 +137,7 @@ function checkEmail() {
 		});
 	});
 }
+
 // Form validation using jQuery
 $(function() {
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -246,10 +265,11 @@ function resetForm() {
 		$("#mobileNumber").val(""),
 		$("#addressOne").val(""),
 		$("#addressTwo").val(""),
-		$('#gender').prop('checked', false),
+		$("input[type=radio][name=gender]").prop('checked', false),
 		$("#Age").val(""),
 		$("#email").val(""),
-		$('#save').val("Register Now")
+		$('#save').val("Register Now"),
+		$('#form-title').html('<i class="fa-solid fa-user-tie"></i>Customer registartion form')
 };
 
 // Save or update customer data.
@@ -324,6 +344,7 @@ function saveOrUpdateCustomer() {
 
 // Get all data from the database
 function getAllCustomers() {
+	debugger;
 	$('#table-customer').DataTable().destroy();
 	var tableData = '';
 	$.ajax({
@@ -331,6 +352,7 @@ function getAllCustomers() {
 		url: "getAllCustomers",
 		success: function(data) {
 			data.forEach(function(item) {
+				var dateFormate = item.dateOfBirth.split("-");
 				if (item.gender == 1) {
 					item.gender = "Male";
 				} else if (item.gender == 2) {
@@ -345,7 +367,7 @@ function getAllCustomers() {
 				}
 				tableData += '<tr>' +
 					'<td id = "name' + item.id + '">' + item.firstName + " " + item.lastName + '</td>' +
-					'<td id = "dob' + item.id + '">' + item.dateOfBirth + '</td>' +
+					'<td id = "dob' + item.id + '">' + dateFormate[2] + "/" + dateFormate[1] + "/" + dateFormate[0] + '</td>' +
 					'<td id = "mobileNumber' + item.id + '">' + item.mobileNumber + '</td>' +
 					'<td id = "address' + item.id + '">' + item.presentAddress + " " + item.permanentAddress + '</td>' +
 					'<td id = "gender' + item.id + '">' + item.gender + '</td>' +
@@ -366,7 +388,10 @@ function getAllCustomers() {
 
 // This function used for fetch selected customer data
 function editCustomer(id) {
-	remvoeAndResetForm();
+	validationErorMessages();
+	hideMobileNumber();
+	hideEmailId();
+	$('#form-title').html('<i class="fa-solid fa-user-tie"></i>Customer edit form');
 	$('#save').val("Update Data");
 	let url = 'getCustomerById/' + id;
 	$.ajax({
@@ -412,7 +437,7 @@ function deleteCustomer(id) {
 			}).then(function() {
 				let url = 'deleteCustomer/' + id;
 				$.ajax({
-					type: "POST",
+					type: "DELETE",
 					url: url,
 					success: function() {
 						remvoeAndResetForm();
